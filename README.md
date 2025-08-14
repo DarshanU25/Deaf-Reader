@@ -1,18 +1,18 @@
 # ✋ ISL/ASL Hand Gesture Recognition (Single & Two-Hand)
 
 **Note:** You will need to run the `requirements.txt` file to install all dependencies and use **Python 3.8**.  
-The `requirements.txt` will also create a virtual environment for you.
+The `requirements.txt` will also create and activate a virtual environment for you.
 
 ---
 
 A Python-based Hand Gesture Recognition system for **Indian Sign Language (ISL)** and **American Sign Language (ASL)**.  
-Supports **single-hand** and **two-hand** gestures, includes a **custom Mediapipe landmark logger** to CSV, **separate training pipelines**, and **live webcam detection**.
+Supports **single-hand** and **two-hand** gestures, includes a **custom MediaPipe landmark logger** to CSV, **separate training pipelines**, and **live webcam detection**.
 
 ---
 
 ## 📌 Features
 - Real-time detection for **1-hand** and **2-hand** gestures.
-- **Custom landmark logger**: saves Mediapipe hand coordinates to CSV.
+- **Custom landmark logger**: saves MediaPipe hand coordinates to CSV.
 - Separate training scripts for **single-hand** and **two-hand** models.
 - **Live prediction** from webcam after training.
 
@@ -22,11 +22,18 @@ Supports **single-hand** and **two-hand** gestures, includes a **custom Mediapip
 
 ### 0) Install Dependencies
 Run:
-```bash
-bash requirements.txt
+
+    bash requirements.txt
+
+(If you reopen a new terminal later, activate the env with:)
+
+    source venv/bin/activate
+
+---
 
 ### 1) Collect Landmark Coordinates
 Run:
+
     python Custom_landmark_detect.py
 
 Controls:
@@ -35,38 +42,43 @@ Controls:
 - Press **ESC** → exit.
 
 Output file:
+
     logged_data.csv
 
 ---
 
 ### 2) Clean & Organize Data
 - Open **logged_data.csv** and remove any **wrong/noisy rows** (e.g., poor detections).
-- If your gesture uses **two hands**:
-  - Copy cleaned data to:
+- If your gesture uses **two hands**, copy cleaned data to:
+
         model/keypoint_classifier/keypoint_twohand.csv
-- If your gesture uses **one hand**:
-  - Copy cleaned data to:
+
+- If your gesture uses **one hand**, copy cleaned data to:
+
         model/keypoint_classifier/keypoint_singlehand.csv
 
 ---
 
 ### 3) Train the Models
 Single-hand model:
+
     python train_model_singlehand.py
 
 Two-hand model:
+
     python train_model_twohand.py
 
 ---
 
 ### 4) Live Gesture Detection
 After training, run:
+
     python live_detection.py
 
 ---
 
 ## 📂 Project Structure
-    ├── Custom_landmark_detect.py               # Collect & log Mediapipe hand landmarks to CSV
+    ├── Custom_landmark_detect.py               # Collect & log MediaPipe hand landmarks to CSV
     ├── live_detection.py                       # Live webcam prediction
     ├── train_model_singlehand.py               # Train single-hand gesture model
     ├── train_model_twohand.py                  # Train two-hand gesture model
